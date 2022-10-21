@@ -10,6 +10,8 @@ ENTRYPOINT ["java","-jar","/app.jar"]
 docker build -t demo:1.0.0 .
 docker run -p 8083:8080 demo:1.0.0
 
+docker network create demo-network
+
 z1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zz
 
 version: '3.4'

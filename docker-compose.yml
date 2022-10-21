@@ -1,13 +1,16 @@
 version: '3.4'
 services:
   demo-service:
-    image: demo:1.0.4
+    image: demo:1.0.10
     ports:
       - "8084:8080"
     environment:
-      - TZ=Europe/London
+      TZ: Europe/London
+      SPRING_PROFILES_ACTIVE: docker
     networks:
-      -  demo-management-net
+      - demo-management-net
+    depends_on:
+      - mongodb_container
     deploy:
       update_config:
         failure_action: continue
@@ -39,5 +42,5 @@ services:
 
 networks:
   demo-management-net:
-    driver: overlay
-    attachable: true
+    external:
+      name: demo-network
