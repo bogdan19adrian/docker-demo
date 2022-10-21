@@ -17,7 +17,7 @@ public class DemoDockerController {
 
     @PostMapping
     public ResponseEntity<DemoDTO> persistDemo(@RequestBody DemoDTO demoDTO) {
-        var demo = demoDockerService.persistDemo();
+        var demo = demoDockerService.persistDemo(demoDTO);
         return new ResponseEntity<>(demo, HttpStatus.CREATED);
     }
 }
