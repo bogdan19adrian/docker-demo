@@ -1,7 +1,7 @@
 version: '3.4'
 services:
   demo-service:
-    image: ${REGISTRY_URL}/demo:1.0.1
+    image: demo:1.0.4
     ports:
       - "8084:8080"
     environment:
@@ -20,6 +20,9 @@ services:
     environment:
       MONGO_INITDB_ROOT_USERNAME: root
       MONGO_INITDB_ROOT_PASSWORD: rootpassword
+      MONGO_INITDB_DATABASE: demo
+      MONGO_DB_USERNAME: demo
+      MONGO_DB_PASSWORD: demo
     ports:
       - "27017:27017"
     networks:
@@ -30,6 +33,8 @@ services:
         order: start-first
       mode: replicated
       replicas: 1
+    volumes:
+      - ./mongo_init/initdb.d/:/docker-entrypoint-initdb.d/
 
 
 networks:
